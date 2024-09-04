@@ -1,6 +1,6 @@
 import React, { SVGProps, useState, useEffect } from 'react'
-import { codeToHtml } from 'shiki'
 import { toast } from 'sonner'
+import dynamic from 'next/dynamic'
 
 interface CodeBlockProps {
   code: string
@@ -16,6 +16,8 @@ export default function CodeBlock({ code, language }: CodeBlockProps) {
   }, [])
 
   const loadShiki = async () => {
+    const { codeToHtml } = await import('shiki')
+
     const c = await codeToHtml(code, {
       lang: language,
       theme: 'catppuccin-mocha'

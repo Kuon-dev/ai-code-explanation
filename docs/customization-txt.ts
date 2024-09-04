@@ -59,7 +59,7 @@ formatter = ImageFormatter(
     line_number_fg="#8f908a"
 )`;
 
-export const structure = `whatever-your-folder-name-is/
+export const structure = `your-folder-name/
 ├── venv/ (auto generated)
 ├── main.py
 ├── requirements.txt

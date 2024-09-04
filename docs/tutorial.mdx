@@ -36,26 +36,24 @@ P.S. I am lazy, I did not check if this website worked correctly or not. If you 
 
 ## Installation
 
-1. Create a new directory for the project and navigate into it:<br /><br /><CodeHighlighter language="bash" code={`mkdir code-explanation-generator
-cd code-explanation-generator`} />
+1. Create a new directory for the project and navigate into it:<br /><CodeHighlighter language="bash" code={`mkdir code-explanation-generator
+cd code-explanation-generator`} isTerminal={true} />
 
-2. Set up a virtual environment:<br /><br />
+2. Set up a virtual environment:<br />
 For Windows:<br /><CodeHighlighter language="bash" code={`python -m venv venv
-.\\venv\\Scripts\\activate`} /><br />For macOS and Linux:<br /><CodeHighlighter language="bash" code={`python3 -m venv venv
-source venv/bin/activate`} /><br />You should now see `(venv)` at the beginning of your command prompt, indicating that the virtual environment is active.
+.\\venv\\Scripts\\activate`} isTerminal={true} />For macOS and Linux:<br /><CodeHighlighter language="bash" code={`python3 -m venv venv
+source venv/bin/activate`} isTerminal={true} />You should now see `(venv)` at the beginning of your command prompt, indicating that the virtual environment is active.
 
-3. Create a file named `main.py` and copy the source code into it <br /><br /><CodeHighlighter language="python" code={mainCode} />
+3. Create a file named `main.py` and copy the source code into it <br /><CodeHighlighter language="python" code={mainCode} />
 
-4. Create a file named `requirements.txt` and copy the following dependencies into it:<br /><br /><CodeHighlighter language="text" code={requirementTxt} />
+4. Create a file named `requirements.txt` and copy the following dependencies into it:<br /><CodeHighlighter language="text" code={requirementTxt} />
 
-5. Install the required dependencies:<br /><br /><CodeHighlighter language="bash" code="pip install -r requirements.txt" />
+5. Install the required dependencies:<br /><CodeHighlighter language="bash" code="pip install -r requirements.txt" isTerminal={true} />
 
 6. Set up your environment variables:
-   Create a `.env` file in the project root and add the following:<br /><br /><CodeHighlighter language="bash" code={env} />
+   Create a `.env` file in the project root and add the following:<br /><CodeHighlighter language="bash" code={env} />
 
-7. When you're done working on the project, you can deactivate the virtual environment by running:
-
-<CodeHighlighter language="bash" code="deactivate" />
+7. When you're done working on the project, you can deactivate the virtual environment by running:<br /><CodeHighlighter language="bash" code="deactivate" isTerminal={true} />
 
 Remember to activate the virtual environment (step 2) whenever you want to run the script or install new dependencies for this project.
 
@@ -63,7 +61,7 @@ Remember to activate the virtual environment (step 2) whenever you want to run t
 
 After following the installation steps, your project folder structure should look like this:
 
-<CodeHighlighter language="text" code={structure} />
+<CodeHighlighter language="text" code={structure} isTerminal={true}/>
 
 - `venv/`: Virtual environment folder (not tracked in version control)
 - `main.py`: The main script containing the code explanation generator

@@ -64,5 +64,4 @@ typing-inspect==0.9.0
 typing_extensions==4.12.2
 urllib3==2.2.2
 XlsxWriter==3.2.0
-yarl==1.9.4
-`
+yarl==1.9.4`

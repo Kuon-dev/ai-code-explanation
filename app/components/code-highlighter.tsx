@@ -1,13 +1,13 @@
 import React, { SVGProps, useState, useEffect } from 'react'
 import { toast } from 'sonner'
-import dynamic from 'next/dynamic'
 
 interface CodeBlockProps {
   code: string
   language: string
+  isTerminal?: boolean
 }
 
-export default function CodeBlock({ code, language }: CodeBlockProps) {
+export default function CodeBlock({ code, language, isTerminal = false }: CodeBlockProps) {
   const [highlightedCode, setHighlightedCode] = useState<string>('')
   const [isCopied, setIsCopied] = useState(false)
 
@@ -17,11 +17,7 @@ export default function CodeBlock({ code, language }: CodeBlockProps) {
 
   const loadShiki = async () => {
     const { codeToHtml } = await import('shiki')
-
-    const c = await codeToHtml(code, {
-      lang: language,
-      theme: 'catppuccin-mocha'
-    })
+    const c = await codeToHtml(code, { lang: language, theme: 'catppuccin-mocha' })
     setHighlightedCode(c)
   }
 
@@ -38,14 +34,34 @@ export default function CodeBlock({ code, language }: CodeBlockProps) {
   }
 
   return (
-    <div className="relative">
-      <div
-        dangerouslySetInnerHTML={{ __html: highlightedCode }}
-        className="*:p-4 *:bg-black *:rounded-md *:overflow-scroll *:text-sm *:font-mono *:max-h-96"
+    <div className="relative my-3 group ease-in-out">
+      <style>{`
+        .code-block-content code {
+          counter-reset: step;
+          counter-increment: step 0;
+        }
+        .code-block-content code .line::before {
+          width: 1rem;
+          margin-right: 1.5rem;
+          display: inline-block;
+          text-align: right;
+          color: rgba(115,138,148,.4);
+        }
+        .code-block-content:not(.terminal) code .line::before {
+          content: counter(step);
+          counter-increment: step;
+        }
+        .code-block-content.terminal code .line::before {
+          content: "$";
+        }
+      `}</style>
+      <div 
+        dangerouslySetInnerHTML={{ __html: highlightedCode }} 
+        className={`code-block-content ${isTerminal ? 'terminal' : ''} *:p-4 *:bg-black *:rounded-md *:overflow-scroll *:text-sm *:font-mono *:max-h-96`}
       />
       <button
         onClick={copyToClipboard}
-        className="absolute top-2 right-2 p-2 bg-gray-700 hover:bg-gray-600 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-gray-500"
+        className="ease-in-out group-hover:block hidden absolute top-2 right-2 p-2 bg-[#313244] hover:bg-[#6c7086] rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-gray-500"
         aria-label="Copy to clipboard"
       >
         {isCopied ? (

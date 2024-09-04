@@ -1,0 +1,108 @@
+import CodeHighlighter from '@/app/components/code-highlighter.tsx'
+import { mainCode } from "./main-code.ts"
+import { requirementTxt } from "./requirement-txt.ts"
+import { env } from "./env-txt.ts"
+import { 
+  fileTypesCode,
+  ignoredDirsCode,
+  lexerSelectionCode,
+  gptModelCode,
+  promptCustomizationCode,
+  pricingCode,
+  imageCustomizationCode
+} from "./customization-txt.ts"
+
+# Code Explanation Generator
+
+This project is a Python-based tool that generates explanations and visual representations for code in a project directory. It uses OpenAI's GPT model to analyze code files, create explanations, and generate a comprehensive Word document with code screenshots and explanations.
+
+P.S. I am lazy, I did not check if this website worked correctly or not. If you found anything wrong with the website don't contact me, only do if there's some major issue with the code. Thanks!
+
+## Features
+
+- Analyzes code files in a specified project directory
+- Generates brief explanations and captions for each file using GPT-4
+- Creates syntax-highlighted screenshots of the code
+- Produces a Word document with auto-numbered figures, explanations, and screenshots
+- Calculates and displays token usage and estimated cost for the GPT API calls
+
+## Prerequisites
+
+- Python 3.12+
+- Powershell / Nushell
+- OpenAI API key (with credits)
+- Microsoft Word (to open the generated document)
+
+## Installation
+
+1. Create a new directory for the project and navigate into it:<br /><br /><CodeHighlighter language="bash" code={`mkdir code-explanation-generator
+cd code-explanation-generator`} />
+
+2. Set up a virtual environment:<br /><br />
+For Windows:<br /><CodeHighlighter language="bash" code={`python -m venv venv
+.\\venv\\Scripts\\activate`} /><br />For macOS and Linux:<br /><CodeHighlighter language="bash" code={`python3 -m venv venv
+source venv/bin/activate`} /><br />You should now see `(venv)` at the beginning of your command prompt, indicating that the virtual environment is active.
+
+3. Create a file named `main.py` and copy the source code into it <br /><br /><CodeHighlighter language="python" code={mainCode} />
+
+4. Create a file named `requirements.txt` and copy the following dependencies into it:<br /><br /><CodeHighlighter language="text" code={requirementTxt} />
+
+5. Install the required dependencies:<br /><br /><CodeHighlighter language="bash" code="pip install -r requirements.txt" />
+
+6. Set up your environment variables:
+   Create a `.env` file in the project root and add the following:<br /><br /><CodeHighlighter language="bash" code={env} />
+
+7. When you're done working on the project, you can deactivate the virtual environment by running:
+
+<CodeHighlighter language="bash" code="deactivate" />
+
+Remember to activate the virtual environment (step 2) whenever you want to run the script or install new dependencies for this project.
+
+## Usage
+
+Run the script with:
+
+<CodeHighlighter language="bash" code="python main.py" />
+
+The script will:
+1. Analyze the code files in the specified project directory
+2. Generate explanations and screenshots for each file
+3. Create a Word document (`code_explanations.docx`) in the `output` directory
+4. Display token usage and estimated cost information
+
+## Output
+
+- `output/screenshots/`: Contains syntax-highlighted PNG images of each analyzed file
+- `output/code_explanations.docx`: Word document with explanations and screenshots
+- Console output: Displays progress, token usage, and cost estimates
+
+## Customization Guide
+
+To adapt the script to your specific requirements, you can modify the following parts of the code:
+
+1. File types:<br />In the `read_typescript_files` function (which should be renamed to something like `read_code_files`), modify the file extension check:<br /><CodeHighlighter language="python" code={fileTypesCode} />
+
+2. Ignored directories:<br />In the same function, update the list of ignored directories:<br /><CodeHighlighter language="python" code={ignoredDirsCode} />
+
+3. Lexer selection:<br />In the `get_lexer_for_file` function, add or modify lexer selections based on your file types:<br /><CodeHighlighter language="python" code={lexerSelectionCode} />
+
+4. GPT model:<br />In the `generate_explanation` function, you can change the GPT model:<br /><CodeHighlighter language="python" code={gptModelCode} />
+
+5. Prompt customization:<br />In the same function, modify the prompt to suit your needs:<br /><CodeHighlighter language="python" code={promptCustomizationCode} />
+
+6. Pricing:<br />Update the pricing constants at the top of the script to reflect current API pricing:<br /><CodeHighlighter language="python" code={pricingCode} />
+
+7. Image customization:<br />In the `create_code_screenshot` function, you can modify the image style and formatting:<br /><CodeHighlighter language="python" code={imageCustomizationCode} />
+
+8. Word document formatting:<br />In the `create_word_document` function, you can adjust the document styling and layout as needed.
+
+Remember to test your changes thoroughly after making any modifications to ensure the script still works as expected with your customizations.
+
+## Limitations
+
+- Large projects may incur significant API costs due to the number of tokens processed
+- The quality of explanations depends on the GPT model's understanding of the code
+
+## Known issues
+- If the file has too many LoC, the generation can look a bit odd
+- Initial generation of the captions may be incorrect, use CTRL+A to select all text and press F9 to update the fields. This should work correctly

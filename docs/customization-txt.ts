@@ -58,3 +58,11 @@ formatter = ImageFormatter(
     line_number_bg="#272822",
     line_number_fg="#8f908a"
 )`;
+
+export const structure = `whatever-your-folder-name-is/
+├── venv/ (auto generated)
+├── main.py
+├── requirements.txt
+├── .env
+└── output/ (auto generated, once you've run the script)
+    ├── screenshots/`

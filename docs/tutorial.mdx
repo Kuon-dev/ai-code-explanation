@@ -3,6 +3,7 @@ import { mainCode } from "./main-code.ts"
 import { requirementTxt } from "./requirement-txt.ts"
 import { env } from "./env-txt.ts"
 import { 
+  structure,
   fileTypesCode,
   ignoredDirsCode,
   lexerSelectionCode,
@@ -58,13 +59,27 @@ source venv/bin/activate`} /><br />You should now see `(venv)` at the beginning 
 
 Remember to activate the virtual environment (step 2) whenever you want to run the script or install new dependencies for this project.
 
+## Project Structure
+
+After following the installation steps, your project folder structure should look like this:
+
+<CodeHighlighter language="text" code={structure} />
+
+- `venv/`: Virtual environment folder (not tracked in version control)
+- `main.py`: The main script containing the code explanation generator
+- `requirements.txt`: List of project dependencies
+- `.env`: Environment variables file (not tracked in version control)
+- `output/`: Directory created by the script to store generated files
+  - `screenshots/`: Folder containing syntax-highlighted PNG images of analyzed files
+  - `code_explanations.docx`: Generated Word document with explanations and screenshots
+
 ## Usage
 
 Run the script with:
 
 <CodeHighlighter language="bash" code="python main.py" />
 
-Note: Make sure that venv is activated. Refer to the Installation section above for details on activating the virtual environment.
+**Note: Make sure that venv is activated. Refer to the Installation section above for details on activating the virtual environment.**
 
 The script will:
 1. Analyze the code files in the specified project directory
